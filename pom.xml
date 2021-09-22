@@ -19,9 +19,13 @@
 		<spring-security.version>5.2.3.RELEASE</spring-security.version>
 		<spring-boot-starter-test.version>1.5.10.RELEASE</spring-boot-starter-test.version>
 		<cdi-api.version>2.0.SP1</cdi-api.version>
+		<rs-api.version>2.1-m07</rs-api.version>
+		<ejb-api.version>3.2</ejb-api.version>
+		<websocket-api.version>1.1</websocket-api.version>
 		<weld-se-core.version>3.0.5.Final</weld-se-core.version>
 		<aspectjweaver.version>1.9.2</aspectjweaver.version>
 		<assertj-core.version>3.10.0</assertj-core.version>
+		<concurrent-api.version>1.0</concurrent-api.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -45,9 +49,30 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>${rs-api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.websocket</groupId>
+			<artifactId>javax.websocket-api</artifactId>
+			<version>${websocket-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>javax.enterprise</groupId>
 			<artifactId>cdi-api</artifactId>
 			<version>${cdi-api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.ejb</groupId>
+			<artifactId>javax.ejb-api</artifactId>
+			<version>${ejb-api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.enterprise.concurrent</groupId>
+			<artifactId>javax.enterprise.concurrent-api</artifactId>
+			<version>${concurrent-api.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.weld.se</groupId>
