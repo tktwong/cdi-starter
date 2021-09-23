@@ -2,7 +2,7 @@ package com.appswalker.controller;
 
 import com.appswalker.model.TickTock;
 import com.appswalker.model.TickTockQualifier;
-import com.appswalker.services.TickTockStarter;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,6 +19,7 @@ import javax.ws.rs.sse.Sse;
 import javax.ws.rs.sse.SseBroadcaster;
 import javax.ws.rs.sse.SseEventSink;
 
+@Log4j2
 @Path("")
 @Singleton
 public class Broadcaster {
@@ -30,18 +31,15 @@ public class Broadcaster {
     @PostConstruct
     public void init(){
         broadcaster = sse.newBroadcaster();
-        System.out.println("broadcaster created");
+        log.info("broadcaster created!!!!!!!!!!!!!!!!!");
     }
-
-    @Inject
-    TickTockStarter timer;
 
     public void register(SseEventSink eventSink){
         broadcaster.register(eventSink);
-        System.out.println("Registered Event sink");
+        log.info("Registered Event sink!!!!!!!!!!!!!");
     }
     public void listener(@ObservesAsync @TickTockQualifier TickTock ticktock){
-        System.out.println("SSE event in thread "+ Thread.currentThread().getName());
+        log.info("@@@@@@@@@@@@@@@@@@@@@SSE event in thread "+ Thread.currentThread().getName());
         OutboundSseEvent sseEvent = sse.newEventBuilder().name(ticktock.getTick()).data(ticktock.getTock()).mediaType(MediaType.TEXT_PLAIN_TYPE).build();
         broadcast(sseEvent);
     }
@@ -56,6 +54,6 @@ public class Broadcaster {
     @PreDestroy
     public void free(){
         broadcaster.close();
-        System.out.println("broadcaster closed");
+        log.info("broadcaster closed!!!!!!!!!!!!!!!!!!!!!!!!!!");
     }
 }
