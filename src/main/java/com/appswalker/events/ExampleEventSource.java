@@ -5,10 +5,10 @@ import javax.inject.Inject;
 
 public class ExampleEventSource {
 
-    @Inject
-    Event<ExampleEvent> exampleEvent;
+//    @Inject
+//    Event<ExampleEvent> exampleEvent;
 
-    public void fireEvent() {
-        exampleEvent.fireAsync(new ExampleEvent("Hello World!"));
-    }
+//    public void fireEvent() {
+//        exampleEvent.fireAsync(new ExampleEvent("Hello World!"));
+//    }
 }

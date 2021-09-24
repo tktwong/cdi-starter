@@ -1,5 +1,6 @@
 package com.appswalker.services;
 
+import com.appswalker.config.springevents.synchronous.CustomSpringEventPublisher;
 import com.appswalker.events.ExampleEvent;
 import com.appswalker.model.TickTock;
 import com.appswalker.model.TickTockQualifier;
@@ -30,13 +31,8 @@ public class SampleJobService {
 
     private AtomicInteger count = new AtomicInteger();
 
-//    @Inject
-//    @TickTockQualifier
-//    private Event<TickTock> tickTockEvent;
-//    @Inject
-//    Event<ExampleEvent> exampleEvent;
-
-    ThreadPoolTaskExecutor threadPoolTaskExecutor;
+    @Autowired
+    CustomSpringEventPublisher customSpringEventPublisher;
 
     private static final Random gen = new Random();
 
@@ -46,10 +42,14 @@ public class SampleJobService {
         try {
 //            Thread.sleep(EXECUTION_TIME);
             log.info("timer triggered!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            SeContainerInitializer containerInitializer = SeContainerInitializer.newInstance();
-            try (SeContainer container = containerInitializer.initialize()) {
-                container.getBeanManager().fireEvent(new ExampleEvent("Hello World!!!"));
-            }
+            customSpringEventPublisher.publishCustomEvent("Custom Hello World");
+            customSpringEventPublisher.publishGenericAppEvent("Generic App-Level Hello World");
+            customSpringEventPublisher.publishGenericEvent("Generic Hello World", true);
+//            SeContainerInitializer containerInitializer = SeContainerInitializer.newInstance();
+//            try (SeContainer container = containerInitializer.initialize()) {
+//                container.getBeanManager().fireEvent(new ExampleEvent("Hello World!!!"));
+//            }
+//            exampleEvent.fireAsync(new ExampleEvent("Hello World!!!"));
 //            tickTockEvent.fireAsync(new TickTock("tick-"+gen.nextInt(10), "tock-"+gen.nextInt(10)),
 //                    NotificationOptions.builder().setExecutor(threadPoolTaskExecutor).build());
             log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@Fired CDI event from thread "+ Thread.currentThread().getName());
