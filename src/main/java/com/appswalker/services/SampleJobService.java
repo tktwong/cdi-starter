@@ -45,6 +45,12 @@ public class SampleJobService {
             customSpringEventPublisher.publishCustomEvent("Custom Hello World");
             customSpringEventPublisher.publishGenericAppEvent("Generic App-Level Hello World");
             customSpringEventPublisher.publishGenericEvent("Generic Hello World", true);
+
+            SeContainerInitializer containerInitializer = SeContainerInitializer.newInstance();
+            try (SeContainer container = containerInitializer.initialize()) {
+                container.getBeanManager().fireEvent(new ExampleEvent("Welcome to Baeldung!"));
+                container.getBeanManager().fireEvent(new TickTock("tick-"+gen.nextInt(10), "tock-"+gen.nextInt(10)));
+            }
 //            SeContainerInitializer containerInitializer = SeContainerInitializer.newInstance();
 //            try (SeContainer container = containerInitializer.initialize()) {
 //                container.getBeanManager().fireEvent(new ExampleEvent("Hello World!!!"));
