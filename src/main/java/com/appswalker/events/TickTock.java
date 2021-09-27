@@ -1,4 +1,4 @@
-package com.appswalker.model;
+package com.appswalker.events;
 
 public class TickTock {
     private String tick;

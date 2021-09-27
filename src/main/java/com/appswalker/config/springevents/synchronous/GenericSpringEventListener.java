@@ -12,7 +12,7 @@ public class GenericSpringEventListener implements ApplicationListener<GenericSp
 
     @Override
     public void onApplicationEvent(@NonNull final GenericSpringAppEvent<String> event) {
-        System.out.println("Received spring generic event - " + event.getWhat());
+        System.out.println("Received spring generic app event - " + event.getWhat());
         hitEventHandler = true;
     }
 

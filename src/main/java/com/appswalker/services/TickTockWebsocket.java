@@ -1,7 +1,6 @@
 package com.appswalker.services;
 
-import com.appswalker.model.TickTock;
-import com.appswalker.model.TickTockQualifier;
+import com.appswalker.events.TickTock;
 
 import java.io.IOException;
 import java.util.List;
@@ -37,7 +36,7 @@ public class TickTockWebsocket {
         SUBSCRIBERS.remove(subscriber);
     }
 
-    public void listener(@ObservesAsync @TickTockQualifier TickTock ticktock){
+    public void listener(@ObservesAsync TickTock ticktock){
         System.out.println("Event in Websocket endpoint thread " +Thread.currentThread().getName()+ ". this will be broadcasted...");
         SUBSCRIBERS.stream()
                 .filter(s -> s.isOpen())

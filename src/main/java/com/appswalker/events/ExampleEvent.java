@@ -11,4 +11,5 @@ public class ExampleEvent {
     public String getEventMessage() {
         return eventMessage;
     }
+
 }

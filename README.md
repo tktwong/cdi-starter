@@ -1,1 +1,1 @@
-# cdi-starter
+#Example on spring-boot + CDI + SpringEvent
